@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.well_fresh_dental_clinic">
    <application
-        android:label="well_fresh_dental_clinic"
+        android:label="Aristotle 10 Quiz"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

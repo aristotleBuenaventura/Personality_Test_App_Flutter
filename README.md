@@ -1,6 +1,6 @@
-# well_fresh_dental_clinic
+# Aristotle_quiz
 
-Well Fresh Dental Clinic
+Aristotle_quiz
 
 ## Getting Started
 

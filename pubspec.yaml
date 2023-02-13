@@ -43,9 +43,10 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
+
 flutter_native_splash:
   color: "#ffffff"
-  image: assets/logo_new.png
+  image: assets/logo1.png
   android: true
   ios: true
   android11: true
