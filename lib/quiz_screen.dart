@@ -5,6 +5,8 @@ import "question_model.dart";
 
 
 class QuizScreen extends StatefulWidget {
+  const QuizScreen({super.key});
+
   @override
   State<QuizScreen> createState() => _QuizScreenState();
 }
@@ -22,19 +24,33 @@ class _QuizScreenState extends State<QuizScreen> {
 
     return Scaffold(
       appBar: AppBar(
-          backgroundColor: Colors.teal,
-          title: Center(
-            child:Text('10 Questions About Aristotle'),
+          backgroundColor: Colors.pinkAccent,
+          title: const Center(
+            child:Text('My Personality Test'),
           )
       ),
-      backgroundColor: Colors.grey,
+      backgroundColor: Colors.black45,
       body: Container(
         margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 32),
         child:
-        Column(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
+        Column(mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
           _questionWidget(),
           _answerList(),
-          _nextButton(),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Expanded(
+                    flex: 1,
+                    child: _backButton(),
+                  ),
+                  const SizedBox(width: 16),
+                  Expanded(
+                    flex: 1,
+                    child: _nextButton(),
+                  ),
+                ],
+              ),
         ]),
       ),
     );
@@ -59,7 +75,7 @@ class _QuizScreenState extends State<QuizScreen> {
           width: double.infinity,
           padding: const EdgeInsets.all(32),
           decoration: BoxDecoration(
-            color: Colors.teal,
+            color: Colors.redAccent,
             borderRadius: BorderRadius.circular(16),
           ),
           child: Text(
@@ -86,6 +102,8 @@ class _QuizScreenState extends State<QuizScreen> {
     );
   }
 
+  int currentValue = 0;
+
   Widget _answerButton(Answer answer) {
     bool isSelected = answer== selectedAnswer;
 
@@ -94,22 +112,21 @@ class _QuizScreenState extends State<QuizScreen> {
       margin: const EdgeInsets.symmetric(vertical: 8),
       height: 48,
       child: ElevatedButton(
-        child: Text(answer.answerText),
         style: ElevatedButton.styleFrom(
           shape: const StadiumBorder(),
-          primary: isSelected ? Colors.teal : Colors.white,
+          primary: isSelected ? Colors.redAccent : Colors.white,
           onPrimary: isSelected ? Colors.white : Colors.black,
         ),
         onPressed: () {
           if (selectedAnswer == null) {
             setState(() {
               selectedAnswer = answer;
-              if (answer.isCorrect) {
-                score++;
-              }
+              currentValue = answer.value;
+              score += answer.value;
             });
           }
         },
+        child: Text(answer.answerText),
 
 
       ),
@@ -123,14 +140,13 @@ class _QuizScreenState extends State<QuizScreen> {
       isLastQuestion = true;
     }
 
-    return Container(
+    return SizedBox(
       width: MediaQuery.of(context).size.width * 0.5,
       height: 48,
       child: ElevatedButton(
-        child: Text(isLastQuestion ? "Submit" : "Next"),
         style: ElevatedButton.styleFrom(
           shape: const StadiumBorder(),
-          primary: Colors.teal,
+          primary: Colors.pinkAccent,
           onPrimary: Colors.white,
         ),
         onPressed: () {
@@ -151,26 +167,69 @@ class _QuizScreenState extends State<QuizScreen> {
             });
           }
         },
+        child: Text(isLastQuestion ? "Submit" : "Next"),
+      ),
+    );
+  }
+
+  _backButton() {
+    bool isFirstQuestion = false;
+
+    if (currentQuestionIndex == 0) {
+      isFirstQuestion = true;
+    }
+
+    return SizedBox(
+      width: MediaQuery.of(context).size.width * 0.5,
+      height: 48,
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          shape: const StadiumBorder(),
+          primary: Colors.pinkAccent,
+          onPrimary: Colors.white,
+        ),
+        onPressed: () {
+          if (isFirstQuestion) {
+            //display score
+            ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text('Cannot go back to the previous question'))
+            );
+          } else {
+            //next question
+            setState(() {
+              selectedAnswer = null;
+              score -= currentValue;
+              currentQuestionIndex--;
+            });
+          }
+        },
+        child: const Text("Back"),
       ),
     );
   }
 
   _showScoreDialog() {
-    bool isPassed = false;
+    String result = "";
 
-    if (score >= questionList.length * 0.75) {
-      //pass if 60 %
-      isPassed = true;
+    if (score > 1 && score <=5) {
+      result = "You are a Neutral Person";
+    } else if (score > 5 && score <=10){
+      result = "You are an Ambivalent Person";
+    } else if(score > 10 && score <=15){
+      result = "You are an Introvert Person";
+    } else if(score > 15 && score <=20){
+      result = "You are an Extrovert Person";
+    } else {
+      result = "Error";
     }
-    String title = isPassed ? "Passed " : "Failed";
+    String title = result;
 
     return AlertDialog(
       title: Text(
-        title + " | Score is $score",
-        style: TextStyle(color: isPassed ? Colors.green : Colors.redAccent),
+        title,
+        style: const TextStyle(),
       ),
       content: ElevatedButton(
-        child: const Text("Restart"),
         onPressed: () {
           Navigator.pop(context);
           setState(() {
@@ -180,6 +239,10 @@ class _QuizScreenState extends State<QuizScreen> {
             questionList.shuffle();
           });
         },
+        style: ElevatedButton.styleFrom(
+          primary: Colors.pinkAccent, // Replace blue with your desired color
+        ),
+        child: const Text("Restart"),
       ),
     );
   }

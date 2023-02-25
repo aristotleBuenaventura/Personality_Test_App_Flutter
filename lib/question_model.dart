@@ -14,9 +14,9 @@ class Question {
 
 class Answer {
   final String answerText;
-  final bool isCorrect;
+  final int value;
 
-  Answer(this.answerText, this.isCorrect);
+  Answer(this.answerText, this.value);
 
 }
 
@@ -25,158 +25,60 @@ List<Question> getQuestions() {
   //ADD questions and answer here
 
   list.add(Question(
-    "Who was Aristotle's teacher?",
+    "When in a large group of people, do you tend to:",
     [
-      Answer("Plato", true),
-      Answer("Socrates", false),
-      Answer("Pythagoras", false),
-      Answer("Zeno", false),
-    ],
-  ));
-
-
-  list.add(Question(
-    "In what area of philosophy did Aristotle make significant contributions?",
-    [
-      Answer("Metaphysics", false),
-      Answer("Epistemology", false),
-      Answer("Logic", false),
-      Answer("All of the above", true),
+      Answer("Feel energized and ready to socialize", 4),
+      Answer("Feel overwhelmed and prefer to observe from a distance", 3),
+      Answer("Feel comfortable and engage in conversation when prompted", 2),
+      Answer("Have no particular preference", 1),
     ],
   ));
 
   list.add(Question(
-    "Who did Aristotle tutor",
+    "How do you typically unwind after a long day?",
     [
-      Answer("Socrates", false),
-      Answer("Alexander the Great", true),
-      Answer("Plato", false),
-      Answer("Pythagoras", false),
+      Answer("By going out and socializing with friends", 4),
+      Answer("By spending time alone in a quiet space", 3),
+      Answer("By doing a mix of both socializing and alone time", 2),
+      Answer("By doing whatever feels right in the moment", 1),
     ],
   ));
 
   list.add(Question(
-    "What was Aristotle's philosophy on ethics?",
+    "Do you tend to make decisions based on:",
     [
-      Answer("Ethics is relative to the individual", false),
-      Answer("Ethics should aim at achieving happiness", true),
-      Answer("Ethics should focus on following rules", false),
-      Answer("Ethics should focus on avoiding pain", false),
+      Answer("Your instincts and emotions", 4),
+      Answer("Careful analysis and reflection", 3),
+      Answer("A combination of both", 2),
+      Answer("No particular approach", 1),
     ],
   ));
 
   list.add(Question(
-    "What was Aristotle's view on politics?",
+    "In a group discussion, do you tend to:",
     [
-      Answer("Political power should be held by the people", false),
-      Answer("Political power should be held by a select few", true),
-      Answer("Political power should be shared among different groups", false),
-      Answer("Political power should be held by a king", false),
+      Answer("Contribute actively and speak up often", 4),
+      Answer("Listen carefully and only speak when you have something important to add", 3),
+      Answer("Do a mix of both, depending on the topic and your level of comfort", 2),
+      Answer("Have no particular pattern", 1),
     ],
   ));
 
   list.add(Question(
-    "What is Aristotle's concept of the 'Golden Mean'?",
+    "When meeting someone new, do you tend to:",
     [
-      Answer("The midpoint between two extremes", true),
-      Answer("The highest point on a scale", false),
-      Answer("The lowest point on a scale", false),
-      Answer("The furthest point from the center", false),
+      Answer("Initiate conversation and be outgoing", 4),
+      Answer("Wait for the other person to initiate and be more reserved", 3),
+      Answer("Do a mix of both, depending on the situation", 2),
+      Answer("Have no particular preference", 1),
     ],
   ));
 
-  list.add(Question(
-    "In what field did Aristotle make significant contributions?",
-    [
-      Answer("Physics", false),
-      Answer("Biology", true),
-      Answer("Astronomy", false),
-      Answer("All of the above", false),
-    ],
-  ));
 
-  list.add(Question(
-    "What was Aristotle's philosophy on causality?",
-    [
-      Answer("Causality is the relationship between an event (the cause) and a second event (the effect), where the second event is a result of the first.", true),
-      Answer("Causality is random and cannot be predicted", false),
-      Answer("Causality does not exist", false),
-      Answer("Causality is determined by fate or destiny", false),
-    ],
-  ));
 
-  list.add(Question(
-    "What is Aristotle's concept of substance?",
-    [
-      Answer("Substance is the underlying reality that exists independently of perception", false),
-      Answer("Substance is a product of perception", true),
-      Answer("Substance does not exist", false),
-      Answer("Substance is the physical material that makes up the universe", false),
-    ],
-  ));
-
-  list.add(Question(
-    "What was Aristotle's view on the natural world?",
-    [
-      Answer("The natural world is deterministic", true),
-      Answer("The natural world is chaotic and unpredictable", false),
-      Answer("The natural world is designed by a higher power", false),
-      Answer("The natural world operates according to random chance", false),
-    ],
-  ));
-
-  list.add(Question(
-    "What was Aristotle's view on the nature of the soul?",
-    [
-      Answer("The soul is an immortal substance.", true),
-      Answer("The soul is a mortal substance", false),
-      Answer("The soul is a divine substance.", false),
-      Answer("The soul is a material substance.", false),
-    ],
-  ));
-
-  list.add(Question(
-    "What was Aristotle's view on the nature of the universe?",
-    [
-      Answer("The universe is infinite.", false),
-      Answer("The universe is finite.", true),
-      Answer("The size of the universe is unknown.", false),
-      Answer("The universe does not exist.", false),
-    ],
-  ));
-
-  list.add(Question(
-    "What was Aristotle's view on the nature of happiness?",
-    [
-      Answer("Happiness is the highest good.", true),
-      Answer("Happiness is a fleeting emotion.", false),
-      Answer("Happiness is an illusion.", false),
-      Answer("Happiness is irrelevant to human life.", false),
-    ],
-  ));
-
-  list.add(Question(
-    "What was Aristotle's view on the nature of knowledge?",
-    [
-      Answer("Knowledge is innate and cannot be acquired.", false),
-      Answer("Knowledge is acquired through observation and experience.", true),
-      Answer("Knowledge is acquired through intuition.", false),
-      Answer("Knowledge is impossible to acquire.", false),
-    ],
-  ));
-
-  list.add(Question(
-    "What was Aristotle's view on the nature of the state?",
-    [
-      Answer("The state is a necessary evil.", false),
-      Answer("The state is an instrument of oppression.", false),
-      Answer("The state is an embodiment of justice and the common good.", true),
-      Answer("The state is irrelevant to human life.", false),
-    ],
-  ));
 
   final random = Random();
-  final result = List.generate(10, (index) {
+  final result = List.generate(5, (index) {
     int nextIndex = random.nextInt(list.length);
     Question item = list[nextIndex];
     list.removeAt(nextIndex);

@@ -8,9 +8,9 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.teal,
+        backgroundColor: Colors.pinkAccent,
         title: const Center(
-          child:Text('10 Questions About Aristotle'),
+          child:Text('My Personality Test'),
         )
       ),
       body: Container(
@@ -18,22 +18,21 @@ class Home extends StatelessWidget {
         child: Column(
           children: [
             const Image(
-              image: AssetImage("assets/logo1.png"),
+              image: AssetImage("assets/personality.png"),
               height: 500,
-              width: 300,
+              width: 400,
             ),
             Center(
               child: ElevatedButton(
                 onPressed: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => QuizScreen()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => const QuizScreen()));
                 },
                 style: ElevatedButton.styleFrom(
                   shape: RoundedRectangleBorder( //to set border radius to button
                       borderRadius: BorderRadius.circular(30)
-                  ),padding: EdgeInsets.all(20),
-                  primary: Colors.teal,
+                  ), backgroundColor: Colors.pinkAccent,padding: const EdgeInsets.all(20),
                 ),
-                child: const Text("Play the Quiz",
+                child: const Text("Know your Personality",
                   style: TextStyle(
                   fontSize: 18,
                 ),

@@ -1,6 +1,6 @@
 # Aristotle_quiz
 
-Aristotle_quiz
+Personality_Test
 
 ## Getting Started
 

@@ -1,5 +1,5 @@
-name: well_fresh_dental_clinic
-description: Well Fresh Dental Clinic
+name: personality_test
+description: Personality Test
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
@@ -46,7 +46,7 @@ dev_dependencies:
 
 flutter_native_splash:
   color: "#ffffff"
-  image: assets/logo1.png
+  image: assets/personality.jpg
   android: true
   ios: true
   android11: true
